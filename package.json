@@ -1,0 +1,28 @@
+{
+  "name": "sunu-gox-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node --watch index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/senessieagness28-stack/sunu-gox-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/senessieagness28-stack/sunu-gox-api/issues"
+  },
+  "homepage": "https://github.com/senessieagness28-stack/sunu-gox-api#readme",
+  "devDependencies": {
+    "prisma": "^6.19.3"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.19.3",
+    "express": "^5.2.1"
+  }
+}

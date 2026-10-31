@@ -4,12 +4,33 @@
 // Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
-generator client {
-  provider = "prisma-client"
-  output   = "../generated/prisma"
+datasource db {
+provider = "postgresql"
+url = env("DATABASE_URL")
 }
 
-datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+generator client {
+provider = "prisma-client-js"
+}
+
+// 1. The Agency model — the bodies responsible for fixing things
+model Agency {
+id String @id @default(uuid())
+name String @unique // e.g. "NAWEC (Water & Electricity)"
+reports Report[] // an Agency can have many Reports (1:N)
+}
+
+// 2. The Report model — the civic issues filed by citizens
+model Report {
+id String @id @default(uuid())
+location String // e.g. "Traffic lights, near the bank"
+description String // e.g. "Major pipe burst wasting water"
+priority String @default("LOW")
+status String @default("PENDING") // PENDING or RESOLVED
+createdAt DateTime @default(now())
+upvotes Int @default(0)
+
+// The relational foreign key setup
+agencyId String
+agency Agency @relation(fields: [agencyId], references: [id])
 }
